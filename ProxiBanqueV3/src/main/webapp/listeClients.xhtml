@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Project Name</title>
+	<meta name="author" content="The Author"></meta>
+</h:head>
+<!-- Add 50px padding top to the body for the navbar -->
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+			<b:jumbotron>
+				<b:container>
+					<h:outputText
+						value="Bonjour #{beanconseiller.conseiller.prenom} #{beanconseiller.conseiller.nom} " />
+				</b:container>
+
+
+				<!-- ==== Formulaire JSF (besoin pour imbriquer h:commandLink) ==== -->
+				<h:form>
+					<!-- ==== Table JSF ==== -->
+					<!-- ==== List clients ==== -->
+					<h:dataTable value="#{beanconseiller.afficherListeClients()}"
+						var="item" styleClass="order-table"
+						headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row">
+
+						<h:column>
+							<!-- column header -->
+							<f:facet name="header">Nom</f:facet>
+							<!-- row record -->
+							<h:outputText value="#{item.nom}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Prenom</f:facet>
+							<h:outputText value="#{item.prenom}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Mail</f:facet>
+							<h:outputText value="#{item.email}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Telephone</f:facet>
+							<h:outputText value="#{item.telephone}" />
+						</h:column>
+
+
+						<h:column>
+							<f:facet name="header"> Adresse </f:facet>
+							<h:outputText value="#{item.adresse}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header"> Ville </f:facet>
+							<h:outputText value="#{item.ville}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header"> Code postal  </f:facet>
+							<h:outputText value="#{item.codePostal}" />
+						</h:column>
+
+						<!-- ==== Lien: Liste comptes client ==== -->
+						<!-- ==== RQ: nom methode inexact... ==== -->
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<h:commandButton value="Liste de comptes"
+								action="#{beanclient.afficherClient(item)}" />
+						</h:column>
+						<!-- ==== Lien: Modifier client ==== -->
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<h:commandLink value="Modifier"
+								action="#{beanclient.modifierClient(item)}" />
+						</h:column>
+						<!-- ==== Lien: Supprimer client ==== -->
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<h:commandLink value="Supprimer"
+								action="#{beanclient.deleteClient(item)}" />
+						</h:column>
+
+
+					</h:dataTable>
+
+				</h:form>
+
+
+
+			</b:jumbotron>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

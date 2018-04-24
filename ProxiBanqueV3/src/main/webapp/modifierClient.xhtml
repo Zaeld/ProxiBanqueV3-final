@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:f="http://java.sun.com/jsf/core"
+	
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Project Name</title>
+	<meta name="author" content="The Author"></meta>
+</h:head>
+<!-- Add 50px padding top to the body for the navbar -->
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+			<b:jumbotron>
+				<b:container>
+					<p>Formulaire d'inscription</p>
+				</b:container>
+			</b:jumbotron>
+			<h:form>
+
+				<h:panelGrid id="panel" columns="3" cellpadding="100"
+					cellspacing="100">
+
+					<h:outputLabel value="Nom : " />
+					<h:inputText value="#{beanclient.client.nom}" required="true"
+						id="nom" styleClass="inputtext" />
+					<h:message for="nom" />
+
+					<h:outputLabel value="Prénom : " />
+					<h:inputText value="#{beanclient.client.prenom}" required="true"
+						id="prenom" styleClass="inputtext" />
+					<h:message for="prenom" />
+
+					<h:outputLabel value="adresse : " />
+					<h:inputText value="#{beanclient.client.adresse}" required="true"
+						id="adresse" styleClass="inputtext" />
+					<h:message for="adresse" />
+
+					<h:outputLabel value="Code Postal : " />
+					<h:inputText value="#{beanclient.client.codePostal}"
+						required="true" id="codePostal" styleClass="inputtext" />
+					<h:message for="codePostal" />
+
+					<h:outputLabel value="Ville : " />
+					<h:inputText value="#{beanclient.client.ville}" required="true"
+						id="ville" styleClass="inputtext" />
+					<h:message for="ville" />
+
+					<h:outputLabel value="Email : " />
+					<h:inputText value="#{beanclient.client.email}" required="true"
+						id="email" styleClass="inputtext" />
+					<h:message for="email" />
+
+					<h:outputLabel value="telephone : " />
+					<h:inputText value="#{beanclient.client.telephone}"
+						required="true" id="telephone" styleClass="inputtext" />
+					<h:message for="telephone" />
+
+					<h:panelGroup style="display:block; text-align:center">
+						<h:commandButton value="Modifier Client"
+							action="#{beanclient.updateClient}" />
+					</h:panelGroup>
+
+				</h:panelGrid> 
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

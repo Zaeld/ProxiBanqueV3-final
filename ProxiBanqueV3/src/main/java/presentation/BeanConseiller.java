@@ -20,6 +20,26 @@ public class BeanConseiller {
 	Client client = new Client();
 	private Conseiller conseiller = new Conseiller();
 
+	// Gestion erreurs
+	String typeErreur = "";
+	String messageErreur = "";
+
+	public String getTypeErreur() {
+		return typeErreur;
+	}
+
+	public void setTypeErreur(String typeErreur) {
+		this.typeErreur = typeErreur;
+	}
+
+	public String getMessageErreur() {
+		return messageErreur;
+	}
+
+	public void setMessageErreur(String messageErreur) {
+		this.messageErreur = messageErreur;
+	}
+
 	public BeanConseiller() {
 		super();
 
@@ -63,7 +83,26 @@ public class BeanConseiller {
 		if (conseiller != null) {
 			return "listeClients";
 		}
-		return "acceuilLogin";
+		return this.erreur(1);
+	}
+
+	// Methode permettant de dispatcher une page d'erreur personnalisée
+	public Object erreur(int codeErreur) {
+
+		String pageErreur;
+		switch (codeErreur) {
+		case 1:
+			this.typeErreur = "Erreur d'identification";
+			this.messageErreur = "Veuillez réessayer";
+			pageErreur = "acceuilLogin";
+			break;
+
+		default:
+			pageErreur = "fatalError";
+			break;
+		}
+		return pageErreur;
+
 	}
 
 	public List<Client> afficherListeClients() {

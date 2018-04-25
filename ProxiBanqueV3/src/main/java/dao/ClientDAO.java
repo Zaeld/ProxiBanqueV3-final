@@ -1,8 +1,8 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,23 +16,29 @@ import domaine.Conseiller;
 
 import domaine.Client;
 
-
 public class ClientDAO {
-	
+
 	public boolean createClient(Client client) {
 		int i = 0;
 		boolean b = false;
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Creation d'un objet de type Statement
+			// Creation d'un objet de type Statement
+			PreparedStatement stmt = Connexion.connexion().prepareStatement(
+					"INSERT INTO `client`(`adresse`, `nom`, `prenom`, `codePostal`, `ville`, `email`, `idConseiller`, `telephone`, `soldeTotal`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			stmt.setString(1, client.getAdresse());
+			stmt.setString(2, client.getNom());
+			stmt.setString(3, client.getPrenom());
+			stmt.setString(4, client.getCodePostal());
+			stmt.setString(5, client.getVille());
+			stmt.setString(6, client.getEmail());
+			stmt.setInt(7, client.getIdConseiller());
+			stmt.setString(8, client.getTelephone());
+			stmt.setDouble(9, client.getSoldeTotal());
 
 			// Affectation a la chaine de caractere s de la requete SQL
-			String s = "INSERT INTO `client`(`adresse`, `nom`, `prenom`, `codePostal`, `ville`, `email`, `idConseiller`, `telephone`, `soldeTotal`) VALUES ('"
-					+ client.getAdresse() + "', '" + client.getNom() + "', '" + client.getPrenom() + "', '"
-					+ client.getCodePostal() + "', '" + client.getVille() + "', '" + client.getEmail() + "', "
-					+ client.getidConseiller() + ", '" + client.getTelephone() + "', " + client.getSoldeTotal() + ")";
 
 			// execution de la requete
-			i = stmt.executeUpdate(s);
+			i = stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -58,13 +64,18 @@ public class ClientDAO {
 	 */
 	public Client getClient(Client client) {
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Creation d'un objet de type Statement
-
 			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL
-			String s = "Select * from Client where idClient = " + client.getIdClient();
+			// Creation
+			// d'un
+			// objet
+			// de
+			// type
+			// Statement
+			PreparedStatement stmt = Connexion.connexion().prepareStatement("Select * from client where idClient = ?");
+			stmt.setInt(1, client.getIdClient());
 
 			// Exï¿½cution de la requï¿½te
-			ResultSet rs = stmt.executeQuery(s);
+			ResultSet rs = stmt.executeQuery();
 
 			// Lecture des rï¿½sultats de la requï¿½te
 			rs.next();
@@ -98,20 +109,29 @@ public class ClientDAO {
 	 */
 	public Client updateClient(Client client) {
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Crï¿½ation d'un objet de type Statement
+			// Crï¿½ation d'un objet de type Statement
+			PreparedStatement stmt = Connexion.connexion().prepareStatement(
+					"UPDATE client set adresse = ?, nom = ?, prenom = ?, codePostal = ?, ville = ?, email = ?, idConseiller = ?, telephone = ?, soldeTotal = ? where idClient = ?");
+			stmt.setString(1, client.getAdresse());
+			stmt.setString(2, client.getNom());
+			stmt.setString(3, client.getPrenom());
+			stmt.setString(4, client.getCodePostal());
+			stmt.setString(5, client.getVille());
+			stmt.setString(6, client.getEmail());
+			stmt.setInt(7, client.getIdConseiller());
+			stmt.setString(8, client.getTelephone());
+			stmt.setDouble(9, client.getSoldeTotal());
+			stmt.setInt(10, client.getIdClient());
 
-			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL
-			String s = "UPDATE client set adresse = '" + client.getAdresse() + "', nom = '" + client.getNom()
-					+ "', prenom = '" + client.getPrenom() + "', CodePostal = '" + client.getCodePostal()
-					+ "', ville = '" + client.getVille() + "', email = '" + client.getEmail() + "', idConseiller = "
-					+ client.getidConseiller() + ", telephone = '" + client.getTelephone() + "', soldeTotal = "
-					+ client.getSoldeTotal() + " where idClient = " + client.getIdClient() + "";
 			// exï¿½cution de la requï¿½te
-			stmt.executeUpdate(s);
+			stmt.executeUpdate();
 
+			PreparedStatement preparedStatement = Connexion.connexion()
+					.prepareStatement("Select * from client where idClient = ?)"); // Creation d'un objet de type
+																					// Statement
+			preparedStatement.setInt(1, client.getIdClient());
 			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL
-			s = "Select * from client where idClient = " + client.getIdClient();
-			ResultSet rs = stmt.executeQuery(s);
+			ResultSet rs = preparedStatement.executeQuery();
 			// Lecture des rï¿½sultats de la requï¿½te
 			rs.first();
 			client.setIdClient(rs.getInt("idClient"));
@@ -146,23 +166,25 @@ public class ClientDAO {
 		boolean b = false;
 		try {
 
-			Statement stmt = Connexion.connexion().createStatement(); // Crï¿½ation d'un objet de type Statement
+			// Crï¿½ation d'un objet de type Statement
+			PreparedStatement stmt = Connexion.connexion().prepareStatement("DELETE from compte where idClient = ?");
+			stmt.setInt(1, client.getIdClient());
 
 			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL, il est
 			// nï¿½cessaire
 			// de supprimer les comptes du client avant de le supprimer car la table
 			// 'compte' est dï¿½pendante de la table 'client'
 
-			String s = "DELETE FROM compte where idClient = " + client.getIdClient();
-
 			// exï¿½cution de la requï¿½te
-			i = stmt.executeUpdate(s);
+			i = stmt.executeUpdate();
 
 			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL
-			s = "DELETE FROM client where idClient = " + client.getIdClient();
+			PreparedStatement preparedStatement = Connexion.connexion()
+					.prepareStatement("DELETE from client where idClient = ?");
+			preparedStatement.setInt(1, client.getIdClient());
 
 			// exï¿½cution de la requï¿½te
-			i = stmt.executeUpdate(s);
+			i = preparedStatement.executeUpdate();
 			// Si l'opï¿½ration est un succï¿½s, i est diffï¿½rend de 0 et la mï¿½thode
 			// retourne
 			// true
@@ -185,13 +207,11 @@ public class ClientDAO {
 		List<Client> listClient = new ArrayList<Client>();
 
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Crï¿½ation d'un objet de type Statement
-
-			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL
-			String s = "SELECT * FROM client";
+			// Crï¿½ation d'un objet de type Statement
+			PreparedStatement preparedStatement = Connexion.connexion().prepareStatement("Select * from client");
 
 			// exï¿½cution de la requï¿½te
-			ResultSet rs = stmt.executeQuery(s);
+			ResultSet rs = preparedStatement.executeQuery();
 			// Lecture des rï¿½sultats de la requï¿½te et insertion dans la liste pour
 			// chaque
 			// boucle
@@ -219,13 +239,14 @@ public class ClientDAO {
 		List<Client> listClient = new ArrayList<Client>();
 
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Crï¿½ation d'un objet de type Statement
-
+			// Crï¿½ation d'un objet de type Statement
+			PreparedStatement stmt = Connexion.connexion()
+					.prepareStatement("Select * from Client where idConseiller = ?");
+			stmt.setInt(1, conseiller.getIdConseiller());
 			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL
-			String s = "SELECT * FROM client WHERE idConseiller = " + conseiller.getIdConseiller();
 
 			// exï¿½cution de la requï¿½te
-			ResultSet rs = stmt.executeQuery(s);
+			ResultSet rs = stmt.executeQuery();
 			// Lecture des rï¿½sultats de la requï¿½te et insertion dans la liste pour
 			// chaque
 			// boucle
@@ -248,24 +269,25 @@ public class ClientDAO {
 		}
 		return listClient;
 	}
-	public List<CompteBancaire> getAllCompte(Client client){
+
+	public List<CompteBancaire> getAllCompte(Client client) {
 		List<CompteBancaire> listCompte = new ArrayList<CompteBancaire>();
 		listCompte.add(getCompteCourant(client));
 		listCompte.add(getCompteEpargne(client));
 		return listCompte;
 
 	}
+
 	public Courant getCompteCourant(Client client) {
 		Courant compte = new Courant();
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Crï¿½ation d'un objet de type Statement
-
-			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL
-			String s = "Select * from compte inner Join client on compte.idClient = client.idClient where typeDeCompte = 'courant' && client.idClient = "
-					+ client.getIdClient();
+			// Crï¿½ation d'un objet de type Statement
+			PreparedStatement stmt = Connexion.connexion().prepareStatement(
+					"Select * from compte inner Join client on compte.idClient = client.idClient where typeDeCompte = 'courant' && client.idClient = ?");
+			stmt.setInt(1, client.getIdClient());
 
 			// exï¿½cution de la requï¿½te
-			ResultSet rs = stmt.executeQuery(s);
+			ResultSet rs = stmt.executeQuery();
 			// Lecture des rï¿½sultats de la requï¿½te
 			rs.first();
 			compte.setIdClient(rs.getInt("IdClient"));
@@ -284,14 +306,13 @@ public class ClientDAO {
 		Epargne compte = new Epargne();
 
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Crï¿½ation d'un objet de type Statement
-
-			// Affectation ï¿½ la chaine de caractï¿½re s de la requï¿½te SQL
-			String s = "Select * from compte inner Join client on compte.idClient = client.idClient where typeDeCompte = 'epargne' && client.idClient = "
-					+ client.getIdClient();
+			// Crï¿½ation d'un objet de type Statement
+			PreparedStatement stmt = Connexion.connexion().prepareStatement(
+					"Select * from compte inner Join client on compte.idClient = client.idClient where typeDeCompte = 'epargne' && client.idClient = ?");
+			stmt.setInt(1, client.getIdClient());
 
 			// exï¿½cution de la requï¿½te
-			ResultSet rs = stmt.executeQuery(s);
+			ResultSet rs = stmt.executeQuery();
 			// Lecture des rï¿½sultats de la requï¿½te
 			rs.next();
 			compte.setIdClient(rs.getInt("IdClient"));
@@ -305,6 +326,5 @@ public class ClientDAO {
 		}
 		return compte;
 	}
-	
 
 }

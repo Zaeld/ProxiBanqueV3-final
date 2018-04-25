@@ -1,8 +1,7 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,14 +35,17 @@ public class CompteEpargneDAO {
 		int i = 0;
 		boolean b = false;
 		try {
-			// Affectation � la chaine de caract�re s de la requ�te SQL
-			String s = "INSERT INTO `compte`(`numeroCompte`, `tauxInteret`, `dateOuverture`, `solde`, `idClient`, `typeDeCompte`)"
-					+ " VALUES ( " + compte.getNumeroCompte() + ", " + compte.getTauxInteret() + ", "
-					+ compte.getSolde() + ", " + compte.getIdClient() + ", '"+compte.getTypeDeCompte()+")";
-			// Cr�ation d'un objet de type Statement
-			Statement stmt = Connexion.connexion().prepareStatement(s);
+			 // Cr�ation d'un objet de type Statement			
+				PreparedStatement stmt = Connexion.connexion().prepareStatement("INSERT INTO `compte`(`numeroCompte`, `tauxInteret`, `solde`, `idClient`, `typeDeCompte`)"
+						+ " VALUES (?, ?, ?, ?, ?)");
+				stmt.setInt(1, compte.getNumCompte());
+				stmt.setDouble(2, compte.getTauxInteret());
+				stmt.setDouble(3, compte.getSolde());
+				stmt.setInt(4, compte.getIdClient());
+				stmt.setString(5, compte.getTypeDeCompte());
+			
 			// ex�cution de la requete
-			i = stmt.executeUpdate(s);
+			i = stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,11 +68,11 @@ public class CompteEpargneDAO {
 	 */
 	public Epargne getEpargne(Epargne compte) {
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Cr�ation d'un objet de type Statement
-			// Affectation � la chaine de caract�re s de la requ�te SQL
-			String s = "Select * from compte where idCompte = " + compte.getIdCompte();
-			// ex�cution de la requete
-			ResultSet rs = stmt.executeQuery(s);
+			PreparedStatement stmt = Connexion.connexion().prepareStatement("Select * from compte where idCompte = ?");
+			stmt.setInt(1, compte.getIdCompte());
+
+			// ex�cution de la requ�te
+			ResultSet rs = stmt.executeQuery();
 			// Lecture des r�sultats de la requ�te
 			rs.next();
 			compte.setIdClient(rs.getInt("IdClient"));
@@ -95,16 +97,24 @@ public class CompteEpargneDAO {
 	 */
 	public Epargne updateEpargne(Epargne compte) {
 		try {
+			// Cr�ation d'un objet de type Statement
 
-			Statement stmt = Connexion.connexion().createStatement(); // Cr�ation d'un objet de type Statement
-			// Affectation � la chaine de caract�re s de la requ�te SQL
-			String s = "UPDATE compte set numeroCompte = '" + compte.getNumeroCompte() + "', tauxInteret = "
-					+ compte.getTauxInteret() + ", solde = " + compte.getSolde() + " where idcompte = "
-					+ compte.getIdCompte();
-			stmt.executeUpdate(s);
-			// Affectation � la chaine de caract�re s de la requ�te SQL
-			s = "Select * from compte where idClient = " + compte.getIdCompte();
-			ResultSet rs = stmt.executeQuery(s);
+			PreparedStatement stmt = Connexion.connexion().prepareStatement("UPDATE compte set numeroCompte = ?, tauxInteret = ?, solde = ? where idcompte = ?");
+					stmt.setInt(1, compte.getNumCompte());
+					stmt.setDouble(2, compte.getTauxInteret());
+					stmt.setDouble(3, compte.getSolde());
+					stmt.setInt(4, compte.getIdCompte());
+
+			stmt.executeUpdate();
+			// ex�cution de la requ�te
+
+			PreparedStatement preparedStatement = Connexion.connexion()
+					.prepareStatement("Select * from compte where idCompte = ?"); // Creation d'un objet de type
+																					// Statement
+			preparedStatement.setInt(1, compte.getIdCompte());
+
+			ResultSet rs = preparedStatement.executeQuery();
+
 			// Lecture des r�sultats de la requ�te
 			rs.next();
 			compte.setIdClient(rs.getInt("IdClient"));
@@ -131,10 +141,13 @@ public class CompteEpargneDAO {
 		int i;
 		boolean b = false;
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Cr�ation d'un objet de type Statement
-			// Affectation � la chaine de caract�re s de la requ�te SQL
-			String s = "DELETE from compte where idCompte = " + compte.getIdCompte();
-			i = stmt.executeUpdate(s);
+			// Cr�ation d'un objet de type Statement
+			PreparedStatement preparedStatement = Connexion.connexion()
+					.prepareStatement("DELETE from compte where idCompte = ?");
+			preparedStatement.setInt(1, compte.getIdCompte());
+
+			// ex�cution de la requ�te
+			i = preparedStatement.executeUpdate();
 			// Si l'op�ration est un succ�s, i est diff�rend de 0 et la m�thode retourne
 			// true
 			if (i != 0)
@@ -155,11 +168,12 @@ public class CompteEpargneDAO {
 	public List<Epargne> getAllEpargne() {
 		List<Epargne> listCEpargne = new ArrayList<Epargne>();
 		try {
-			Statement stmt = Connexion.connexion().createStatement(); // Cr�ation d'un objet de type Statement
-			// Affectation � la chaine de caract�re s de la requ�te SQL
-			String s = "Select * from compte where typeDeCompte = 'epargne'";
+			// Cr�ation d'un objet de type Statement
+			PreparedStatement preparedStatement = Connexion.connexion()
+					.prepareStatement("Select * from compte where typeDeCompte = 'epargne'");
+
 			// ex�cution de la requete
-			ResultSet rs = stmt.executeQuery(s);
+			ResultSet rs = preparedStatement.executeQuery();
 			// Lecture des r�sultats de la requ�te et insertion dans la liste pour chaque
 			// boucle
 			while (rs.next()) {

@@ -18,25 +18,18 @@
 		<ui:define name="content">
 			<b:jumbotron>
 				<b:container>
-					<p>Virement compte à compte</p>
+				<h1> 
+					<h:outputText
+							value="Virement compte à compte"/>
+					</h1> 
 				</b:container>
 			</b:jumbotron>
 			<h:form>
-				<h:outputLabel value="Choisissez le compte à débiter :" />
+
 				<ul>
 					<h:panelGrid id="panel" columns="1" cellpadding="100"
 						cellspacing="100">
 
-						<!-- 	<ui:repeat value="#{beanclient.afficherListeComptes()}"
-							var="compte">
-							<h:selectOneMenu value="#{beanclient.afficherListeComptes()}"> -->
-
-						<!-- 		<f:selectItem itemValue="1" itemLabel="#{compte}" />
-								<f:selectItem itemValue="2" itemLabel="#{compte}" />
-							</h:selectOneMenu>
-							<h:selectOneMenu>
-							</h:selectOneMenu>
-						</ui:repeat> -->
 
 						<h:outputLabel value="Choisissez le compte à débiter :" />
 						<h:selectOneMenu style="width: 500px;"

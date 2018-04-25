@@ -5,10 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
 <h:head>
 	<title>Project Name</title>
 	<meta name="author" content="The Author"></meta>
+
+
 </h:head>
+
 <!-- Add 50px padding top to the body for the navbar -->
 <h:body>
 
@@ -73,12 +77,18 @@
 							<h:outputText value="#{item.codePostal}" />
 						</h:column>
 
-						<!-- ==== Lien: Liste comptes client ==== -->
+						<!-- ==== Bouton: Liste comptes client ==== -->
 						<!-- ==== RQ: nom methode inexact... ==== -->
 						<h:column>
 							<f:facet name="header"></f:facet>
 							<h:commandButton value="Liste de comptes"
 								action="#{beanclient.afficherClient(item)}" />
+						</h:column>
+						<!-- ==== Bouton: Virement ==== -->
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<h:commandButton value="Virement"
+								action="#{beanclient.virement(item)}" />
 						</h:column>
 						<!-- ==== Lien: Modifier client ==== -->
 						<h:column>
@@ -92,12 +102,7 @@
 							<h:commandLink value="Supprimer"
 								action="#{beanclient.deleteClient(item)}" />
 						</h:column>
-						<!-- ==== Lien: Virement ==== -->
-						<h:column>
-							<f:facet name="header"></f:facet>
-							<h:commandLink value="Virement Compte à Compte"
-								action="#{beanclient.virement(item)}" />
-						</h:column>
+
 
 					</h:dataTable>
 

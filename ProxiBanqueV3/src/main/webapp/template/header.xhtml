@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Project Name</title>
 	<meta name="author" content="The Author"></meta>
@@ -11,21 +12,17 @@
 <!-- Add 50px padding top to the body for the navbar -->
 <h:body>
 
+<!-- Nav var PrimeFaces -->
+					<h:panelGroup style="display:block; text-align:center">
+						<!-- navbar PrimeFaces -->
+						<p:menubar>
+							<p:menuitem value="Liste de clients" 
+							url="listeClients.xhtml"  icon="ui-icon-arrowreturnthick-1-w"/>
+							<p:menuitem value="Déconnexion" 
+							url="acceuilLogin.xhtml"  icon="ui-icon-close" />
+						</p:menubar>
+					</h:panelGroup>
 
 
-	<b:navBar inverse="true" fixed="top">
-		<div class="navbar-header">
-			<h:graphicImage library="image" name="logo.png" />
-		</div>
-		<b:navbarLinks>
-			<b:navLink value="Acceuil" href="listeClients.xhtml"></b:navLink>
-		</b:navbarLinks>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a class="btn btn-danger btn-lg" href="acceuilLogin.xhtml"
-					role="button">Quitter</a></li>
-			</ul>
-		</div>
-	</b:navBar>
 </h:body>
 </html>

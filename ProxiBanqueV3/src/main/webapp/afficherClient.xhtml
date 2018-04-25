@@ -22,53 +22,53 @@
 						<h:outputText
 							value="Liste de comptes du client #{beanclient.client.prenom} #{beanclient.client.nom} " />
 					</h1>
+
+
+					<h:panelGrid>
+						<h:panelGroup style="display:block; text-align:center">
+							<!-- ==== Formulaire JSF (besoin pour imbriquer h:commandLink) ==== -->
+							<h:form>
+								<!-- ==== Table JSF ==== -->
+								<!-- ==== List clients ==== -->
+								<h:dataTable value="#{beanclient.afficherListeComptes()}"
+									var="compte" styleClass="order-table"
+									headerClass="order-table-header"
+									rowClasses="order-table-odd-row,order-table-even-row">
+
+									<h:column>
+										<!-- column header -->
+										<f:facet name="header">Numero de compte</f:facet>
+										<!-- row record -->
+										<h:outputText value="#{compte.numCompte}" />
+									</h:column>
+
+									<h:column>
+										<f:facet name="header">Solde</f:facet>
+										<h:outputText value="#{compte.solde} EUR" />
+									</h:column>
+
+									<h:column>
+										<f:facet name="header">Type de compte </f:facet>
+										<h:outputText value="#{compte.typeDeCompte}" />
+									</h:column>
+
+								</h:dataTable>
+							</h:form>
+						</h:panelGroup>
+					</h:panelGrid>
+
+
+					<!-- ==== Button: Retour à l'accueil ==== -->
+					<h:form>
+						<h:panelGroup style="display:block; text-align:center">
+							<h:commandButton value="Retour à la liste de clients"
+								action="listeClients.xhtml" />
+						</h:panelGroup>
+					</h:form>
+
+
+
 				</b:container>
-
-<h:panelGrid>
-<h:panelGroup style="display:block; text-align:center">
-				<!-- ==== Formulaire JSF (besoin pour imbriquer h:commandLink) ==== -->
-				<h:form>
-					<!-- ==== Table JSF ==== -->
-					<!-- ==== List clients ==== -->
-					<h:dataTable value="#{beanclient.afficherListeComptes()}"
-						var="compte" styleClass="order-table"
-						headerClass="order-table-header"
-						rowClasses="order-table-odd-row,order-table-even-row">
-
-						<h:column>
-							<!-- column header -->
-							<f:facet name="header">Numero de compte</f:facet>
-							<!-- row record -->
-							<h:outputText value="#{compte.numCompte}" />
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">Solde</f:facet>
-							<h:outputText value="#{compte.solde} EUR" />
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">Type de compte </f:facet>
-							<h:outputText value="#{compte.typeDeCompte}" />
-						</h:column>
-
-					</h:dataTable>
-				</h:form>
-</h:panelGroup>
-</h:panelGrid>
-
-
-				<!-- ==== Button: Retour à l'accueil ==== -->
-				<h:form>
-					<h:panelGroup style="display:block; text-align:center">
-						<h:commandButton value="Retour à la liste de clients"
-							action="listeClients.xhtml" />
-					</h:panelGroup>
-				</h:form>
-
-
-
-
 			</b:jumbotron>
 		</ui:define>
 

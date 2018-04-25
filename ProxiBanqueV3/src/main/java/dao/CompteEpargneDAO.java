@@ -66,6 +66,26 @@ public class CompteEpargneDAO {
 	 * @param compte
 	 * @return
 	 */
+	public Epargne getEpargneNumCompte(Epargne compte) {
+		try {
+			PreparedStatement stmt = Connexion.connexion().prepareStatement("Select * from compte where numeroCompte = ?");
+			stmt.setInt(1, compte.getNumCompte());
+
+			// ex�cution de la requ�te
+			ResultSet rs = stmt.executeQuery();
+			// Lecture des r�sultats de la requ�te
+			rs.next();
+			compte.setIdClient(rs.getInt("IdClient"));
+			compte.setIdCompte(rs.getInt("IdCompte"));
+			compte.setNumeroCompte(rs.getInt("numeroCompte"));
+			compte.setTauxInteret(rs.getDouble("tauxInteret"));
+			compte.setSolde(rs.getDouble("solde"));
+
+		} catch (SQLException e) {
+			return null;	
+		}
+		return compte;
+	}
 	public Epargne getEpargne(Epargne compte) {
 		try {
 			PreparedStatement stmt = Connexion.connexion().prepareStatement("Select * from compte where idCompte = ?");
@@ -82,7 +102,7 @@ public class CompteEpargneDAO {
 			compte.setSolde(rs.getDouble("solde"));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return null;	
 		}
 		return compte;
 	}

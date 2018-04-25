@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import dao.CompteEpargneDAO;
+import domaine.Courant;
 import domaine.Epargne;
 
 /**
@@ -34,7 +35,9 @@ public class EpargneService {
 	public Epargne getEpargne(Epargne compte) {
 		return dao.getEpargne(compte);
 	}
-
+	public Epargne getEpargneNumCompte(Epargne compte) {
+		return dao.getEpargneNumCompte(compte);
+	}
 	/**
 	 * @param compte
 	 * @return

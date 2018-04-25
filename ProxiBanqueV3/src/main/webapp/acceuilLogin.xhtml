@@ -31,36 +31,37 @@
 							style="color:red" />
 					</h:panelGroup>
 
+
+					<h:form>
+						<h:panelGrid id="panel" columns="3" cellpadding="100"
+							cellspacing="100">
+
+							<h:outputLabel value="Login : " />
+							<h:inputText value="#{beanconseiller.login.identifiant}"
+								required="true" id="login" styleClass="inputtext" />
+							<h:message for="login" />
+
+							<h:outputLabel value="Mot de passe : " />
+							<h:inputText value="#{beanconseiller.login.motDePasse}"
+								required="true" id="MotDePasse" styleClass="inputtext" />
+							<h:message for="MotDePasse" />
+
+
+							<!-- ==== Button: Connexion ==== -->
+
+							<h:panelGroup style="display:block; text-align:center">
+								<h:commandButton value="Connexion"
+									action="#{beanconseiller.verifLogin}" />
+							</h:panelGroup>
+
+
+
+
+						</h:panelGrid>
+
+					</h:form>
+
 				</b:container>
-				<h:form>
-					<h:panelGrid id="panel" columns="3" cellpadding="100"
-						cellspacing="100">
-
-						<h:outputLabel value="Login : " />
-						<h:inputText value="#{beanconseiller.login.identifiant}"
-							required="true" id="login" styleClass="inputtext" />
-						<h:message for="login" />
-
-						<h:outputLabel value="Mot de passe : " />
-						<h:inputText value="#{beanconseiller.login.motDePasse}"
-							required="true" id="MotDePasse" styleClass="inputtext" />
-						<h:message for="MotDePasse" />
-
-
-						<!-- ==== Button: Connexion ==== -->
-
-						<h:panelGroup style="display:block; text-align:center">
-							<h:commandButton value="Connexion"
-								action="#{beanconseiller.verifLogin}" />
-						</h:panelGroup>
-
-
-
-
-					</h:panelGrid>
-
-				</h:form>
-
 			</b:jumbotron>
 		</ui:define>
 

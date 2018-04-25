@@ -16,6 +16,13 @@ public class Courant extends CompteBancaire {
 		super();
 		this.decouvertAutorise = 1000;
 		this.setTypeDeCompte("courant");
+		this.setTypeCarte("ELECTRON");
+	}
+
+	public Courant(double decouvertAutorise, String typeCarte) {
+		super();
+		this.decouvertAutorise = decouvertAutorise;
+		this.typeCarte = typeCarte;
 	}
 
 	// Getters et Setters

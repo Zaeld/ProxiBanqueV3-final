@@ -33,7 +33,9 @@ public class CourantService {
 	public Courant getCourant(Courant compte) {
 		return dao.getCourant(compte);
 	}
-
+	public Courant getCourantNumCompte(Courant compte) {
+		return dao.getCourantNumCompte(compte);
+	}
 	/**
 	 * @param compte
 	 * @return

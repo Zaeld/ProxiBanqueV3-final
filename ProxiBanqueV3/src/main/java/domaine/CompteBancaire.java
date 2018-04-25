@@ -21,6 +21,7 @@ public abstract class CompteBancaire {
 		this.numCompte = (int) (Math.random() * 10000);
 		this.solde = 12;
 		this.idCompte=1;
+		this.idClient=1;
 	}
 
 	public int getNumCompte() {

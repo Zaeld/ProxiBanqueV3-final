@@ -17,8 +17,12 @@
 		<ui:define name="content">
 			<b:jumbotron>
 				<b:container>
-					<h:outputText
-						value="Bonjour #{beanconseiller.conseiller.prenom} #{beanconseiller.conseiller.nom} " />
+					<h1>
+						<h:outputText
+							value="Bonjour #{beanconseiller.conseiller.prenom} #{beanconseiller.conseiller.nom} " />
+					</h1>
+
+
 				</b:container>
 
 
@@ -88,7 +92,12 @@
 							<h:commandLink value="Supprimer"
 								action="#{beanclient.deleteClient(item)}" />
 						</h:column>
-
+						<!-- ==== Lien: Virement ==== -->
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<h:commandLink value="Virement Compte à Compte"
+								action="#{beanclient.virement(item)}" />
+						</h:column>
 
 					</h:dataTable>
 

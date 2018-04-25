@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
+xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -12,22 +12,21 @@
 <!-- Add 50px padding top to the body for the navbar -->
 <h:body>
 
-	<ui:composition template="/template/layout.xhtml">
+	<ui:composition template="/template/layoutacceuil.xhtml">
 
 		<ui:define name="content">
 			<b:jumbotron>
-				<b:container>
-					<h1>Operation effectuée avec succès !</h1>
-		
+			<b:container>
+					<h1>Le site de ProxiBanque est hors service</h1>
+					
+					<h:outputText value="Erreur fatal" style="color:red"/>
+					<p></p>
+					<h:outputText value="Veuillez relancer l'application" style="color:red"/>
+	
+					
 				</b:container>
-				
-							<!-- ==== Button: Retour à l'accueil ==== -->
-			<h:form>
-				<h:panelGroup style="display:block; text-align:center">
-					<h:commandButton value="Retour à la liste de clients"
-						action="listeClients.xhtml" />
-				</h:panelGroup>
-			</h:form>
+	
+	
 
 			</b:jumbotron>
 		</ui:define>

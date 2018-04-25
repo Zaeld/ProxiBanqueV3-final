@@ -13,7 +13,7 @@ import domaine.Epargne;
  * @author Stagiaire
  *
  */
-public class GestionCompteService {
+public class GestionCompteService implements IVirement{
 	// La classe GestionCompteService regroupe la méthode d'affichage de tout les
 	// comptes ainsi que les méthodes régissant les interactions entre comptes comme
 	// le système de virement
@@ -105,12 +105,17 @@ public class GestionCompteService {
 		// On récupère le solde de chaque compte avant le virement pour les tester plus
 		// tard.
 		double solde1avant = comptedébiteur.getSolde();
+
 		double solde2avant = comptecréditeur.getSolde();
 
 		// On effectue le virement en appelant les méthodes débiter() et créditer()
 		// correspondant et on récupère les soldes finaux des comptes
 		double solde1après = this.debiter(comptedébiteur, somme).getSolde();
+		courantDAO.updateCourant(comptedébiteur);
+
 		double solde2après = this.crediter(comptecréditeur, somme).getSolde();
+		courantDAO.updateCourant(comptecréditeur);
+
 
 		// Si les soldes des comptes ont été modifié par le virement, la méthode
 		// retourne true, sinon elle retourne false
@@ -136,7 +141,10 @@ public class GestionCompteService {
 		// On effectue le virement en appelant les méthodes débiter() et créditer()
 		// correspondant et on récupère les soldes finaux des comptes
 		double solde1après = this.debiter(comptedébiteur, somme).getSolde();
+		courantDAO.updateCourant(comptedébiteur);
+
 		double solde2après = this.crediter(comptecréditeur, somme).getSolde();
+		epargneDAO.updateEpargne(comptecréditeur);
 
 		// Si les soldes des comptes ont été modifié par le virement, la méthode
 		// retourne true, sinon elle retourne false
@@ -162,7 +170,10 @@ public class GestionCompteService {
 		// On effectue le virement en appelant les méthodes débiter() et créditer()
 		// correspondant et on récupère les soldes finaux des comptes
 		double solde1après = this.debiter(comptedébiteur, somme).getSolde();
+		epargneDAO.updateEpargne(comptedébiteur);
 		double solde2après = this.crediter(comptecréditeur, somme).getSolde();
+		courantDAO.updateCourant(comptecréditeur);
+
 
 		// Si les soldes des comptes ont été modifié par le virement, la méthode
 		// retourne true, sinon elle retourne false
@@ -188,7 +199,9 @@ public class GestionCompteService {
 		// On effectue le virement en appelant les méthodes débiter() et créditer()
 		// correspondant et on récupère les soldes finaux des comptes
 		double solde1après = this.debiter(comptedébiteur, somme).getSolde();
+		epargneDAO.updateEpargne(comptedébiteur);
 		double solde2après = this.crediter(comptecréditeur, somme).getSolde();
+		epargneDAO.updateEpargne(comptecréditeur);
 
 		// Si les soldes des comptes ont été modifié par le virement, la méthode
 		// retourne true, sinon elle retourne false

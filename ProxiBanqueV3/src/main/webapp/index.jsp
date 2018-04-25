@@ -8,6 +8,7 @@
 </head>
 <body>
 
-<jsp:forward page="/faces/acceuilLogin.xhtml"></jsp:forward>
+ <jsp:forward page="/faces/acceuilLogin.xhtml"></jsp:forward> 
+<%-- <jsp:forward page="/faces/erreur.xhtml"></jsp:forward> --%>
 </body>
 </html>

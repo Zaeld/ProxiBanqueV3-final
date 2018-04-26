@@ -1,7 +1,11 @@
-# README ProxibanqueV3 release n°1
+# README ProxibanqueV3 
 Ce document décrit les démarches à effectuer afin de pouvoir lancer l’application **ProxiBanqueV3** dans un environnement Windows ayant pour serveur d'application TomCat
 - Auteurs: *Alexandre DEMOLIS*, *Beatriz MORENO*
 - Societé: *Olétri conception informatique*
+- Dernière release: *release N°1*
+
+## Localisation du projet 
+- https://github.com/melomanab/ProxiBanqueV3.git
 
 ## Pré-requis de configuration
 - Installer le **JDK 8** (ou supérieur) sur la machine cible,
@@ -21,8 +25,6 @@ Ce document décrit les démarches à effectuer afin de pouvoir lancer l’appli
 		- Cliquer sur le bouton ‘Exécuter’ pour compléter l’importation
 		- Vérifier qu’une base de données nommé ‘proxibanque’ a bien été créé sur le menu déroulant à gauche de la page
 	
-## Localisation du projet :
-- https://github.com/melomanab/ProxiBanqueV3.git
 
 ## Exécution sur Tomcat
 - **Démarrer** le serveur d'applications **Tomcat** en double-cliquant le fichier 'startup.bat' du dossier 'bin' d'installation de votre serveur Tomcat
@@ -32,16 +34,14 @@ Ce document décrit les démarches à effectuer afin de pouvoir lancer l’appli
 	- Copier le fichier ‘ProxiBanqueV3.war’en local sur la machine dans le **dossier webapps** du répertoire d'installation 		de Tomcat,
 		- Exemple du chemin : "C:\...\apache-tomcat-9.0.6\webapps"
 	- Vérifier que le fichier ‘ProxiBanqueV3.war’ se dézippe dans un répertoire portant le nom du war, ce qui voudra dire 		que votre application a été bien déployée
+- **Configuration de log4j**
+	- Dans le répertoire 'ProxiBanqueV3' généré a partir du fichier ‘ProxiBanqueV3.war’ dans 'webapp':
+		- Rentrer dans le dossier ‘WEB-INF‘, puis le dossier ‘classes‘.
+		- Editer le fichier ‘log4j.properties‘ à l'aide d'un logiciel de traitement de texte tel que notepad++
+		- Taper à la ligne 10 après "File=" le chemin vers le fichier log où vont être enregistré les logs.
+			- Exemple du chemin : "C:\...\WEB-INF\log.log"
 - **Lancer** l’application **ProxiBanqueV3**
 	- Ouvrir un navigateur web et taper ‘localhost:8080/ProxiBanqueV3’* dans la barre d'adresse
-
-## Configuration de log4j
-- Dans le dossier ProxiBanqueV3 généré a partir du fichier ‘ProxiBanqueV3.war’:
-	- Rentrer dans le dossier ‘WEB-INF‘, puis le dossier ‘classes‘.
-	- Editer le fichier ‘log4j.properties‘ à l'aide d'un logiciel de traitement de texte tel que notepad++
-	- Taper à la ligne 10 après "File=" le chemin vers le fichier log où vont être enregistré les logs.
-		- Exemple du chemin : "C:\...\WEB-INF\log.log"
-- La fonctionnalité log4j va permettre d'enregistrer dans le fichier .log notamment les actions suivantes : connection réussie, échec de connection et les informations sur les virements, si ils ont été effectués ou non en précisant les id des comptes et le montant du virement.
 
 ## Utilisation
 ### Ecran N°1 : Authentification Conseiller
@@ -53,7 +53,9 @@ Ce document décrit les démarches à effectuer afin de pouvoir lancer l’appli
 		- login = championdu69 et password = 782541 avec 3 clients
 		- login = laforce et password = 584589 avec 0 client
 - Si l'identification est correcte, cet écran donne accès à la liste de clients du conseiller (écran N°2)
+	- De plus, l'évennement 'connection réussie' est enregistré dans un fichier .log grâce à la fonctionnalitée Log4J
 - En cas d'erreur d'identification, l'écran est affiché avec le message 'Erreur d'identification. Veuillez reesayer'.
+	- De plus, l'évennement 'échec de connection' est enregistré dans un fichier .log grâce à la fonctionnalitée Log4J
 
 ### Ecran N°2 : Liste des clients
 <img src="https://drive.google.com/uc?id=1oy_IIxFcgy0jnftZY7DPYw-9A9kWXMJg">	
@@ -94,10 +96,11 @@ Ce document décrit les démarches à effectuer afin de pouvoir lancer l’appli
 		- La selection de comptes se fait à travers un menu deroulant
 	- Le montant du virement doit être specifié par le conseiller dans le champ **Montant**
 	- Le bouton **Valider** permet la validation du virement
+- De plus, les les informations du virement sont enregistrées dans un fichier .log grâce à la fonctionnalitée Log4J
 - Cas d'erreur prévus
 	- Si le montant especifié est égal à 0 EUR, une page d'erreur est affiché avec le message suivant: 'Une erreur à été rencontrée 	et l'opération n'a pas pu être effectuée'.
 	- Si le compte beneficiare coincide avec le compte émetteur selectionné, une page d'erreur est affiché avec le message suivant: 	'Attention, vous ne pouvez pas faire de virement d'un compte vers lui même'.
-
+	- Dans les deux cas, les informations sur les virements non-effectués sont enregistrées dans un fichier .log en précisant les id des comptes et le montant du virement
 ## Outils et frameworks
 ### Release 1
 - Front Office: 
@@ -105,7 +108,7 @@ Ce document décrit les démarches à effectuer afin de pouvoir lancer l’appli
 	- Bootstrap 3
 	- Primefaces
 - Back Office :
-	- Log4j (enregistrement des logs dans un fichier)
+	- Log4j 
 	- JDBC (accès aux données)
 	- PreparedStatement 
 - Tests unitaires

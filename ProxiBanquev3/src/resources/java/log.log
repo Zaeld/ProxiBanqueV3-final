@@ -151,3 +151,11 @@
 2018-04-26 09:41:25,880 [INFO ] (Connexion.java:connexion:45) Connection réussi
 2018-04-26 09:41:25,891 [INFO ] (Connexion.java:connexion:45) Connection réussi
 2018-04-26 09:41:25,892 [DEBUG] (BeanVirement.java:virementGestion:73) Un virement de 0du compte id : 2 vers le compte id : 3 n'a pas pu ête correctement effectué
+2018-04-26 09:53:10,264 [INFO ] (BeanConseiller.java:verifLogin:96) Connection réussi
+2018-04-26 09:55:38,516 [INFO ] (BeanConseiller.java:verifLogin:96) Connection réussi
+2018-04-26 09:56:18,160 [INFO ] (BeanConseiller.java:verifLogin:96) Connection réussi
+2018-04-26 09:58:11,168 [INFO ] (BeanConseiller.java:verifLogin:96) Connection réussi
+2018-04-26 10:07:01,503 [INFO ] (BeanConseiller.java:verifLogin:102) Identifiant non reconnu
+2018-04-26 10:07:32,280 [INFO ] (BeanConseiller.java:verifLogin:97) Connection réussi
+2018-04-26 10:19:36,357 [INFO ] (BeanConseiller.java:verifLogin:97) Connection réussi
+2018-04-26 10:29:01,103 [INFO ] (BeanConseiller.java:verifLogin:97) Connection réussi

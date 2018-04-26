@@ -1,4 +1,4 @@
-package dao;
+package fr.gtm.dao;
 
 import java.sql.PreparedStatement;
 
@@ -7,15 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import domaine.Courant;
-import domaine.Epargne;
-import service.Loggen;
-import domaine.CompteBancaire;
-
-import dao.Connexion;
-import domaine.Conseiller;
-
-import domaine.Client;
+import fr.gtm.dao.Connexion;
+import fr.gtm.domaine.Client;
+import fr.gtm.domaine.CompteBancaire;
+import fr.gtm.domaine.Conseiller;
+import fr.gtm.domaine.Courant;
+import fr.gtm.domaine.Epargne;
+import fr.gtm.service.Loggen;
 
 /**
  * ClientDAO est la classe dans la couche DAO qui permet d'acceder aux

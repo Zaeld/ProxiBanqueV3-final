@@ -1,11 +1,11 @@
-package dao;
+package fr.gtm.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import domaine.Conseiller;
+import fr.gtm.domaine.Conseiller;
 
 /**
  * ConseillerDAO est la classe comportant la methode getConseiller qui permet de

@@ -1,13 +1,14 @@
-package service;
+package fr.gtm.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import dao.CompteCourantDAO;
-import dao.CompteEpargneDAO;
-import domaine.CompteBancaire;
-import domaine.Courant;
-import domaine.Epargne;
+import fr.gtm.dao.CompteCourantDAO;
+import fr.gtm.dao.CompteEpargneDAO;
+import fr.gtm.domaine.CompteBancaire;
+import fr.gtm.domaine.Courant;
+import fr.gtm.domaine.Epargne;
 
 /**
  * La classe GestionCompteService regroupe la méthode d'affichage de tout les

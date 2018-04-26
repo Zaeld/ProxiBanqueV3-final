@@ -1,9 +1,9 @@
-package service;
+package fr.gtm.service;
 
 import java.util.List;
 
-import dao.CompteEpargneDAO;
-import domaine.Epargne;
+import fr.gtm.dao.CompteEpargneDAO;
+import fr.gtm.domaine.Epargne;
 
 /**
  * La classe EpargneService permet de faire le lien entre la couche pr�sentation

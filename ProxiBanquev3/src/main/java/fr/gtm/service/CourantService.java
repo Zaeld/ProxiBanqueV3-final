@@ -1,9 +1,10 @@
-package service;
+package fr.gtm.service;
 
 import java.util.List;
 
-import dao.CompteCourantDAO;
-import domaine.Courant;
+
+import fr.gtm.dao.CompteCourantDAO;
+import fr.gtm.domaine.Courant;
 
 /**
  * La classe CourantService permet de faire le lien entre la couche pr�sentation

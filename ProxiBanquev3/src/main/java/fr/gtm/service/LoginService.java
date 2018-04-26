@@ -1,10 +1,11 @@
-package service;
+package fr.gtm.service;
 
 import java.util.ArrayList;
-import dao.ConseillerDAO;
-import dao.LoginDAO;
-import domaine.Conseiller;
-import domaine.Login;
+
+import fr.gtm.dao.ConseillerDAO;
+import fr.gtm.dao.LoginDAO;
+import fr.gtm.domaine.Conseiller;
+import fr.gtm.domaine.Login;
 
 /**
  * La classe LoginService permet de faire le lien entre la couche présentation

@@ -1,4 +1,4 @@
-package domaine;
+package fr.gtm.domaine;
 
 /**
  * La classe Epargne herite de la classe abstraite CompteBancaire
@@ -31,6 +31,6 @@ public class Epargne extends CompteBancaire {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return super.toString(this.getNumeroCompte()) + " et a un taux d'interet de " + this.tauxInteret + "%";
-	}
+			return super.toString();
+		}	
 }

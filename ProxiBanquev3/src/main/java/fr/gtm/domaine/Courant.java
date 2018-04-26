@@ -1,4 +1,4 @@
-package domaine;
+package fr.gtm.domaine;
 
 /**
  * La classe Courant hérite de la classe abstraite CompteBancaire
@@ -49,7 +49,6 @@ public class Courant extends CompteBancaire {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return super.toString(this.getNumeroCompte()) + ", a un decouvert autorise de " + this.decouvertAutorise
-				+ " et est associe a une carte " + this.getTypeCarte();
+		return super.toString();
 	}
 }

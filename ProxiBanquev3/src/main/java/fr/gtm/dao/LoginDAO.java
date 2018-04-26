@@ -1,4 +1,4 @@
-package dao;
+package fr.gtm.dao;
 
 import java.sql.ResultSet;
 
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import domaine.Conseiller;
-import domaine.Login;
+import fr.gtm.domaine.Conseiller;
+import fr.gtm.domaine.Login;
 
 /**
  * LoginDAO est la classe comportant la méthode Verification Login qui permet de

@@ -1,14 +1,14 @@
-package presentation;
+package fr.gtm.presentation;
 
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import domaine.Client;
-import domaine.CompteBancaire;
-import service.ClientService;
-import service.GestionCompteService;
+import fr.gtm.domaine.Client;
+import fr.gtm.domaine.CompteBancaire;
+import fr.gtm.service.ClientService;
+import fr.gtm.service.GestionCompteService;
 
 /**
  * Bean permettant de récupérer les attributs de l'objet client sur la vue de la

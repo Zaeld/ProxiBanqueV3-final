@@ -1,13 +1,13 @@
-package presentation;
+package fr.gtm.presentation;
 
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
 
-import service.CourantService;
-import service.EpargneService;
-import service.GestionCompteService;
-import service.Loggen;
+import fr.gtm.service.CourantService;
+import fr.gtm.service.EpargneService;
+import fr.gtm.service.GestionCompteService;
+import fr.gtm.service.Loggen;
 
 /**
  * Bean permettant de gérer la fonctionnalité de virement compte à compte en

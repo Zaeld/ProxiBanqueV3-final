@@ -16,14 +16,21 @@
 
 		<ui:define name="content">
 			<b:jumbotron>
-			
-				<b:container>
-				
-				<!-- ==== Message erreur ==== -->
-					<h1>Une erreur à été rencontrée et l'opération n'a pas pu être effectuée</h1>
-		
-				</b:container>
 
+				<b:container>
+
+					<!-- ==== Message erreur ==== -->
+					<h1>Une erreur à été rencontrée et l'opération n'a pas pu être
+						effectuée</h1>
+
+				</b:container>
+				<!-- ==== Button: Retour à l'accueil ==== -->
+				<h:form>
+					<h:panelGroup style="display:block; text-align:center">
+						<h:commandButton value="Retour à la liste de clients"
+							action="listeClients.xhtml" />
+					</h:panelGroup>
+				</h:form>
 			</b:jumbotron>
 		</ui:define>
 

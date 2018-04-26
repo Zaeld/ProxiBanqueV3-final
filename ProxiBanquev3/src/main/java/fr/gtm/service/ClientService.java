@@ -1,14 +1,13 @@
-package service;
+package fr.gtm.service;
 
 import java.util.ArrayList;
 
 import java.util.List;
 
-import domaine.Conseiller;
-
-import dao.ClientDAO;
-import domaine.Client;
-import domaine.CompteBancaire;
+import fr.gtm.dao.ClientDAO;
+import fr.gtm.domaine.Client;
+import fr.gtm.domaine.CompteBancaire;
+import fr.gtm.domaine.Conseiller;
 
 /**
  * La classe ClientService permet de faire le lien entre la couche présentation

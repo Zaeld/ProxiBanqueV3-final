@@ -1,7 +1,7 @@
-package service;
+package fr.gtm.service;
 
-import domaine.Courant;
-import domaine.Epargne;
+import fr.gtm.domaine.Courant;
+import fr.gtm.domaine.Epargne;
 
 /**
  * L'interface IVirement est implémentée par la classe GestionCompteService qui

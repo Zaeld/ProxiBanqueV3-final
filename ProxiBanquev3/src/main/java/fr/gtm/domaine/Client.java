@@ -1,4 +1,4 @@
-package domaine;
+package fr.gtm.domaine;
 
 /**
  * @author Stagiaire

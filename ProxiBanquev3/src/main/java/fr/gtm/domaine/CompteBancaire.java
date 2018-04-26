@@ -1,4 +1,4 @@
-package domaine;
+package fr.gtm.domaine;
 
 /**
  * Compte Bancaire est une classe abstraite dont vont heriter les classes
@@ -78,7 +78,7 @@ public abstract class CompteBancaire {
 	 * @param numeroCompte
 	 * @return
 	 */
-	public String toString(int numeroCompte) {
-		return "Le compte de numero " + this.numCompte + " a pour solde " + this.solde + " euros.";
+	public String toString() {
+		return "Compte " + this.getTypeDeCompte() + " numéro "+this.getNumeroCompte()+" ayant pour solde " + this.getSolde() + " EUR.";
 	}
 }

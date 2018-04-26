@@ -1,16 +1,17 @@
-package presentation;
+package fr.gtm.presentation;
 
 import java.util.List;
 
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import domaine.Client;
-import domaine.Conseiller;
-import domaine.Login;
-import service.ClientService;
-import service.Loggen;
-import service.LoginService;
+
+import fr.gtm.domaine.Client;
+import fr.gtm.domaine.Conseiller;
+import fr.gtm.domaine.Login;
+import fr.gtm.service.ClientService;
+import fr.gtm.service.Loggen;
+import fr.gtm.service.LoginService;
 
 /**
  * Ce bean permet de récupérer les attributs d'un objet conseiller, notament
@@ -94,6 +95,8 @@ public class BeanConseiller {
 
 		if (conseiller != null) {
 			Loggen.logger.info("Connection réussi");
+			this.typeErreur = "";
+			this.messageErreur = "";
 			return "listeClients";
 		}
 		Loggen.logger.info("Identifiant non reconnu");

@@ -1,4 +1,4 @@
-﻿package service;
+﻿package fr.gtm.service;
 
 import org.apache.log4j.Logger;
 
@@ -6,6 +6,6 @@ import org.apache.log4j.Logger;
  * @author ademolis
  *
  */
-public class Loggen {
+public abstract class Loggen {
 	public static Logger logger = Logger.getLogger(Loggen.class);
 }

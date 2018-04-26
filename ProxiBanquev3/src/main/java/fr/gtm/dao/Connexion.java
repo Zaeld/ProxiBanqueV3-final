@@ -1,4 +1,4 @@
-package dao;
+package fr.gtm.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import service.Loggen;
+import fr.gtm.service.Loggen;
 
 /**
  * Classe appelant le driver et permettant la connexion avec la base de donnée.

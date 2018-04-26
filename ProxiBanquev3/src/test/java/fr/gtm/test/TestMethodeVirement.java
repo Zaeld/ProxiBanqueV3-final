@@ -1,4 +1,4 @@
-package test;
+package fr.gtm.test;
 
 import static org.junit.Assert.assertThat;
 
@@ -15,12 +15,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import domaine.Courant;
-import domaine.Epargne;
+import fr.gtm.domaine.Courant;
+import fr.gtm.domaine.Epargne;
+import fr.gtm.service.CourantService;
+import fr.gtm.service.EpargneService;
+import fr.gtm.service.GestionCompteService;
 import junit.framework.TestCase;
-import service.CourantService;
-import service.EpargneService;
-import service.GestionCompteService;
 
 /**
  * TestMethodeVirement est un classe de tests parametrée

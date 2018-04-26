@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Project Name</title>
+	<meta name="author" content="The Author"></meta>
+</h:head>
+<!-- Add 50px padding top to the body for the navbar -->
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<ui:define name="content">
+			<b:jumbotron>
+				<b:container>
+				
+					<!-- ==== Message succes operation ==== -->
+					<h1>Operation effectuée avec succès !</h1>
+		
+				</b:container>
+				
+							<!-- ==== Button: Retour à l'accueil ==== -->
+			<h:form>
+				<h:panelGroup style="display:block; text-align:center">
+					<h:commandButton value="Retour à la liste de clients"
+						action="listeClients.xhtml" />
+				</h:panelGroup>
+			</h:form>
+
+			</b:jumbotron>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

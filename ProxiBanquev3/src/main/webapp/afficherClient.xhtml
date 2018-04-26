@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Project Name</title>
+	<meta name="author" content="The Author"></meta>
+</h:head>
+<!-- Add 50px padding top to the body for the navbar -->
+<h:body>
+
+	<ui:composition template="/template/layout.xhtml">
+
+		<!-- ==== Content ==== -->
+		<ui:define name="content">
+			<b:jumbotron>
+				<b:container>
+				
+				<!-- ==== Entete page ==== -->
+					<h1><h:outputText value="Liste de comptes"/></h1>
+					
+					<h:outputText
+							value="Client: #{beanclient.client.prenom} #{beanclient.client.nom} " />
+					
+
+
+					<h:panelGrid>
+						<h:panelGroup style="display:block; text-align:center">
+							<!-- ==== Formulaire JSF (besoin pour imbriquer h:commandLink) ==== -->
+							<h:form>
+								<!-- ==== Table JSF ==== -->
+								<!-- ==== List clients ==== -->
+								<h:dataTable value="#{beanclient.afficherListeComptes()}"
+									var="compte" styleClass="order-table"
+									headerClass="order-table-header"
+									rowClasses="order-table-odd-row,order-table-even-row">
+
+									<h:column>
+										<!-- column header -->
+										<f:facet name="header">Numero de compte</f:facet>
+										<!-- row record -->
+										<h:outputText value="#{compte.numCompte}" />
+									</h:column>
+
+									<h:column>
+										<f:facet name="header">Solde</f:facet>
+										<h:outputText value="#{compte.solde} EUR" />
+									</h:column>
+
+									<h:column>
+										<f:facet name="header">Type de compte </f:facet>
+										<h:outputText value="#{compte.typeDeCompte}" />
+									</h:column>
+
+								</h:dataTable>
+							</h:form>
+						</h:panelGroup>
+					</h:panelGrid>
+
+
+					<!-- ==== Button: Retour à l'accueil ==== -->
+					<h:form>
+						<h:panelGroup style="display:block; text-align:center">
+							<h:commandButton value="Retour à la liste de clients"
+								action="listeClients.xhtml" />
+						</h:panelGroup>
+					</h:form>
+
+
+
+				</b:container>
+			</b:jumbotron>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

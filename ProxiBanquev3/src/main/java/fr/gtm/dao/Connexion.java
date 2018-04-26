@@ -1,5 +1,6 @@
 package fr.gtm.dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -25,8 +26,7 @@ public class Connexion {
 	public static Connection connexion() {
 		Connection maConnection = null; // D�claration d'un objet de type Connection.
 		try {
-			PropertyConfigurator.configure(
-					"C:/Users/Stagiaire/Desktop/proxibanque 26 04/ProxiBanqueV3/ProxiBanquev3/src/resources/java/log.properties");
+	
 
 
 			// Importation du Driver permettant la liaison avec le serveur de Base de

@@ -23,12 +23,16 @@ import fr.gtm.service.GestionCompteService;
 import junit.framework.TestCase;
 
 /**
- * TestMethodeVirement est un classe de tests parametrée
- * @author  Demolis A., Moreno B.
+ * TestMethodeVirement est un classe de tests parametree pour tester la methode
+ * virementCompteACompte
+ * 
+ * @author Demolis A., Moreno B.
  *
  */
 @RunWith(Parameterized.class)
 public class TestMethodeVirement extends TestCase {
+
+	// Declaration
 	private double soldeCourant;
 	private double soldeEpargne;
 	private double montantVirement;
@@ -36,9 +40,13 @@ public class TestMethodeVirement extends TestCase {
 	private double soldeEpargneApres;
 	private static Courant courant = new Courant();
 	private static Epargne epargne = new Epargne();
+	static CourantService serviceCourant = new CourantService();
+	static EpargneService serviceEpargne = new EpargneService();
+	GestionCompteService service = new GestionCompteService();
 
 	/**
-	 * Constructeur 
+	 * Constructeur parametre
+	 * 
 	 * @param soldeCourant
 	 * @param soldeEpargne
 	 * @param montantVirement
@@ -56,62 +64,59 @@ public class TestMethodeVirement extends TestCase {
 	}
 
 	/**
-	 * Méthode permettant d'initialiser les proprietées de la classe TestMethodeVirement
-	 * @return Array de paramètres
+	 * Methode permettant d'initialiser les proprietees des objets
+	 * TestMethodeVirement
+	 * 
+	 * @return Array de paramÃ¨tres
 	 */
 	@Parameters
 	static public List<Object[]> getParameters() {
 		Object[][] parameters = { { 100000, 100000, 100000, 0, 200000 }, { -100000, 0, 100000, -200000, 100000 },
-				{ 0, -100000, 100000, -100000, 0 }   };
+				{ 0, -100000, 100000, -100000, 0 } };
 		return Arrays.asList(parameters);
 	}
 
 	@BeforeClass
 	public static void CreationCourant() {
-		CourantService serviceCourant = new CourantService();
+		// Creation des objets en base de donnee au debut des tests
 		serviceCourant.createCourant(courant);
-		EpargneService serviceEpargne = new EpargneService();
 		serviceEpargne.creerEpargne(epargne);
 	}
 
 	@Before
 	public void before() {
-		System.out.println("Début du test");
-		CourantService serviceCourant = new CourantService();
-		EpargneService serviceEpargne = new EpargneService();
+		// Affectation des attributs des objets avec les parametres du test avant chaque
+		// tests
+		System.out.println("Debut du test");
 		System.out.println(courant);
-
 		courant = serviceCourant.getCourantNumCompte(courant);
 		epargne = serviceEpargne.getEpargneNumCompte(epargne);
 		courant.setSolde(soldeCourant);
 		epargne.setSolde(soldeEpargne);
-		System.out.println(courant);
 
 	}
 
+	// Test de la methode crediter
 	@Test
-	public void TestCréditer() {
-		GestionCompteService service = new GestionCompteService();
+	public void TestCrediter() {
 		service.crediter(epargne, montantVirement);
 		assertThat(epargne.getSolde(), IsEqual.equalTo(soldeEpargneApres));
 
 	}
 
+	// Test de la methode debiter
 	@Test
-	public void TestDébiter() {
-		GestionCompteService service = new GestionCompteService();
+	public void TestDebiter() {
 		service.debiter(courant, montantVirement);
 		assertThat(courant.getSolde(), IsEqual.equalTo(soldeCourantApres));
 
 	}
 
+	// Test de la methode virementCourantAEpargne
 	@Test
 	public void TestVirementCourantAEpargne() {
-		GestionCompteService service = new GestionCompteService();
-		System.out.println(courant);
 
 		service.virementCompteACompte(courant, epargne, montantVirement);
-		System.out.println(courant);
 
 		assertThat(courant.getSolde(), IsEqual.equalTo(soldeCourantApres));
 		assertThat(epargne.getSolde(), IsEqual.equalTo(soldeEpargneApres));
@@ -122,11 +127,10 @@ public class TestMethodeVirement extends TestCase {
 		System.out.println("Fin du test");
 	}
 
+	// Suppression des objets en base de donnee
 	@AfterClass
 	public static void SupressionCourant() {
-		CourantService serviceCourant = new CourantService();
 		serviceCourant.deleteCourant(courant);
-		EpargneService serviceEpargne = new EpargneService();
 		serviceEpargne.deleteEpargne(epargne);
 	}
 

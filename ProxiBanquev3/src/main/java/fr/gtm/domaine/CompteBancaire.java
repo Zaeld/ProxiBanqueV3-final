@@ -74,9 +74,9 @@ public abstract class CompteBancaire {
 		this.idCompte = idCompte;
 	}
 
-	/**Redefinition de la methode toString()
-	 * @param numeroCompte
-	 * @return
+	
+	/* Redefinition de la methode toString()
+	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		return "Compte " + this.getTypeDeCompte() + " numéro "+this.getNumeroCompte()+" ayant pour solde " + this.getSolde() + " EUR.";

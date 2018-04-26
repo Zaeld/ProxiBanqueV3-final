@@ -11,28 +11,28 @@ import fr.gtm.domaine.Courant;
 import fr.gtm.domaine.Epargne;
 
 /**
- * La classe GestionCompteService regroupe la méthode d'affichage de tout les
- * comptes ainsi que les méthodes régissant les interactions entre comptes comme
- * le système de virement. Elle implémente l'interface IVirement
+ * La classe GestionCompteService regroupe la methode d'affichage de tout les
+ * comptes ainsi que les methodes regissant les interactions entre comptes comme
+ * le systÃ¨me de virement. Elle implemente l'interface IVirement
  * 
  * @author Stagiaire
  *
  */
 public class GestionCompteService implements IVirement {
 
-	// Déclaration
+	// Declaration
 	CompteCourantDAO courantDAO = new CompteCourantDAO();
 	CompteEpargneDAO epargneDAO = new CompteEpargneDAO();
 
-	// Méthode retournant toutes les entrées de la table 'compte' de la
-	// base de donnée.
+	// Methode retournant toutes les entrees de la table 'compte' de la
+	// base de donnee.
 	public List<CompteBancaire> getAllCompte() {
 
-		// D�claration
+		// Dï¿½claration
 		List<CompteBancaire> listCompte = new ArrayList<CompteBancaire>();
 		ArrayList<CompteBancaire> comptes = new ArrayList<CompteBancaire>();
 
-		// On ajoute la liste des comptes �pargnes et courant � la liste de compte
+		// On ajoute la liste des comptes ï¿½pargnes et courant ï¿½ la liste de compte
 		// bancaire
 		listCompte.addAll(courantDAO.getAllCourant());
 		listCompte.addAll(epargneDAO.getAllEpargne());
@@ -44,9 +44,9 @@ public class GestionCompteService implements IVirement {
 	}
 
 	/**
-	 * La méthode débiter et créditer permet de modifier le solde d'un compte en
-	 * paramètre d'entrée en fonction de la variable somme aussi en paramètre
-	 * d'entrée de méthode. Les méthodes sont surchargées pour s'adapter au type de
+	 * La methode debiter et crediter permet de modifier le solde d'un compte en
+	 * paramÃ¨tre d'entree en fonction de la variable somme aussi en paramÃ¨tre
+	 * d'entree de methode. Les methodes sont surchargees pour s'adapter au type de
 	 * compte.
 	 * 
 	 * @param compte
@@ -60,9 +60,9 @@ public class GestionCompteService implements IVirement {
 	}
 
 	/**
-	 * La méthode débiter et créditer permet de modifier le solde d'un compte en
-	 * paramètre d'entrée en fonction de la variable somme aussi en paramètre
-	 * d'entrée de méthode. Les méthodes sont surchargées pour s'adapter au type de
+	 * La methode debiter et crediter permet de modifier le solde d'un compte en
+	 * paramÃ¨tre d'entree en fonction de la variable somme aussi en paramÃ¨tre
+	 * d'entree de methode. Les methodes sont surchargees pour s'adapter au type de
 	 * compte.
 	 * 
 	 * @param compte
@@ -76,9 +76,9 @@ public class GestionCompteService implements IVirement {
 	}
 
 	/**
-	 * La méthode débiter et créditer permet de modifier le solde d'un compte en
-	 * paramètre d'entrée en fonction de la variable somme aussi en paramètre
-	 * d'entrée de méthode. Les méthodes sont surchargées pour s'adapter au type de
+	 * La methode debiter et crediter permet de modifier le solde d'un compte en
+	 * paramÃ¨tre d'entree en fonction de la variable somme aussi en paramÃ¨tre
+	 * d'entree de methode. Les methodes sont surchargees pour s'adapter au type de
 	 * compte.
 	 * 
 	 * @param compte
@@ -93,9 +93,9 @@ public class GestionCompteService implements IVirement {
 	}
 
 	/**
-	 * La méthode débiter et créditer permet de modifier le solde d'un compte en
-	 * paramètre d'entrée en fonction de la variable somme aussi en paramètre
-	 * d'entrée de méthode. Les méthodes sont surchargées pour s'adapter au type de
+	 * La methode debiter et crediter permet de modifier le solde d'un compte en
+	 * paramÃ¨tre d'entree en fonction de la variable somme aussi en paramÃ¨tre
+	 * d'entree de methode. Les methodes sont surchargees pour s'adapter au type de
 	 * compte.
 	 * 
 	 * @param compte
@@ -109,198 +109,208 @@ public class GestionCompteService implements IVirement {
 	}
 
 	/**
-	 * La méthode virementCompteACompte permet de faire un virement entre deux
-	 * comptes en fonction de la variable somme. La méthode est surchargée pour
-	 * s'adapter au type de compte en paramètre d'entrée.
+	 * La methode virementCompteACompte permet de faire un virement entre deux
+	 * comptes en fonction de la variable somme. La methode est surchargee pour
+	 * s'adapter au type de compte en paramÃ¨tre d'entree.
 	 * 
-	 * @param comptedébiteur
-	 * @param comptecréditeur
+	 * @param comptedebiteur
+	 * @param comptecrediteur
 	 * @param somme
 	 * @return
 	 */
-	public boolean virementCompteACompte(Courant comptedébiteur, Courant comptecréditeur, double somme) {
+	public boolean virementCompteACompte(Courant comptedebiteur, Courant comptecrediteur, double somme) {
 
-		// On récupère le solde de chaque compte avant le virement pour les tester plus
+		// On recupÃ¨re le solde de chaque compte avant le virement pour les tester plus
 		// tard.
-		double solde1avant = comptedébiteur.getSolde();
+		double solde1avant = comptedebiteur.getSolde();
 
-		double solde2avant = comptecréditeur.getSolde();
+		double solde2avant = comptecrediteur.getSolde();
 
-		// On effectue le virement en appelant les méthodes débiter() et créditer()
-		// correspondant et on récupère les soldes finaux des comptes
-		double solde1après = this.debiter(comptedébiteur, somme).getSolde();
-		courantDAO.updateCourant(comptedébiteur);
+		// On effectue le virement en appelant les methodes debiter() et crediter()
+		// correspondant et on recupÃ¨re les soldes finaux des comptes
+		double solde1apre = this.debiter(comptedebiteur, somme).getSolde();
+		courantDAO.updateCourant(comptedebiteur);
 
-		double solde2après = this.crediter(comptecréditeur, somme).getSolde();
-		courantDAO.updateCourant(comptecréditeur);
+		double solde2apre = this.crediter(comptecrediteur, somme).getSolde();
+		courantDAO.updateCourant(comptecrediteur);
 
-		// Si les soldes des comptes ont été modifié par le virement, la méthode
+		// Si les soldes des comptes ont ete modifie par le virement, la methode
 		// retourne true, sinon elle retourne false
-		if (solde1avant != solde1après && solde2avant != solde2après)
+		if (solde1avant != solde1apre && solde2avant != solde2apre)
 			return true;
 		else
 			return false;
 	}
 
 	/**
-	 * La méthode virementCompteACompte permet de faire un virement entre deux
-	 * comptes en fonction de la variable somme. La méthode est surchargée pour
-	 * s'adapter au type de compte en paramètre d'entrée.
+	 * La methode virementCompteACompte permet de faire un virement entre deux
+	 * comptes en fonction de la variable somme. La methode est surchargee pour
+	 * s'adapter au type de compte en paramÃ¨tre d'entree.
 	 * 
-	 * @param comptedébiteur
-	 * @param comptecréditeur
+	 * @param comptedebiteur
+	 * @param comptecrediteur
 	 * @param somme
 	 * @return
 	 */
-	public boolean virementCompteACompte(Courant comptedébiteur, Epargne comptecréditeur, double somme) {
+	public boolean virementCompteACompte(Courant comptedebiteur, Epargne comptecrediteur, double somme) {
 
-		// On récupère le solde de chaque compte avant le virement pour les tester plus
+		// On recupÃ¨re le solde de chaque compte avant le virement pour les tester plus
 		// tard.
-		double solde1avant = comptedébiteur.getSolde();
-		double solde2avant = comptecréditeur.getSolde();
+		double solde1avant = comptedebiteur.getSolde();
+		double solde2avant = comptecrediteur.getSolde();
 
-		// On effectue le virement en appelant les méthodes débiter() et créditer()
-		// correspondant et on récupère les soldes finaux des comptes
-		double solde1après = this.debiter(comptedébiteur, somme).getSolde();
-		courantDAO.updateCourant(comptedébiteur);
+		// On effectue le virement en appelant les methodes debiter() et crediter()
+		// correspondant et on recupÃ¨re les soldes finaux des comptes
+		double solde1apre = this.debiter(comptedebiteur, somme).getSolde();
+		courantDAO.updateCourant(comptedebiteur);
 
-		double solde2après = this.crediter(comptecréditeur, somme).getSolde();
-		epargneDAO.updateEpargne(comptecréditeur);
+		double solde2apre = this.crediter(comptecrediteur, somme).getSolde();
+		epargneDAO.updateEpargne(comptecrediteur);
 
-		// Si les soldes des comptes ont été modifié par le virement, la méthode
+		// Si les soldes des comptes ont ete modifie par le virement, la methode
 		// retourne true, sinon elle retourne false
-		if (solde1avant != solde1après && solde2avant != solde2après)
+		if (solde1avant != solde1apre && solde2avant != solde2apre)
 			return true;
 		else
 			return false;
 	}
 
 	/**
-	 * La méthode virementCompteACompte permet de faire un virement entre deux
-	 * comptes en fonction de la variable somme. La méthode est surchargée pour
-	 * s'adapter au type de compte en paramètre d'entrée.
+	 * La methode virementCompteACompte permet de faire un virement entre deux
+	 * comptes en fonction de la variable somme. La methode est surchargee pour
+	 * s'adapter au type de compte en paramÃ¨tre d'entree.
 	 * 
-	 * @param comptedébiteur
-	 * @param comptecréditeur
+	 * @param comptedebiteur
+	 * @param comptecrediteur
 	 * @param somme
 	 * @return
 	 */
-	public boolean virementCompteACompte(Epargne comptedébiteur, Courant comptecréditeur, double somme) {
+	public boolean virementCompteACompte(Epargne comptedebiteur, Courant comptecrediteur, double somme) {
 
-		// On récupère le solde de chaque compte avant le virement pour les tester plus
+		// On recupÃ¨re le solde de chaque compte avant le virement pour les tester plus
 		// tard.
-		double solde1avant = comptedébiteur.getSolde();
-		double solde2avant = comptecréditeur.getSolde();
+		double solde1avant = comptedebiteur.getSolde();
+		double solde2avant = comptecrediteur.getSolde();
 
-		// On effectue le virement en appelant les méthodes débiter() et créditer()
-		// correspondant et on récupère les soldes finaux des comptes
-		double solde1après = this.debiter(comptedébiteur, somme).getSolde();
-		epargneDAO.updateEpargne(comptedébiteur);
-		double solde2après = this.crediter(comptecréditeur, somme).getSolde();
-		courantDAO.updateCourant(comptecréditeur);
+		// On effectue le virement en appelant les methodes debiter() et crediter()
+		// correspondant et on recupÃ¨re les soldes finaux des comptes
+		double solde1apre = this.debiter(comptedebiteur, somme).getSolde();
+		epargneDAO.updateEpargne(comptedebiteur);
+		double solde2apre = this.crediter(comptecrediteur, somme).getSolde();
+		courantDAO.updateCourant(comptecrediteur);
 
-		// Si les soldes des comptes ont été modifié par le virement, la méthode
+		// Si les soldes des comptes ont ete modifie par le virement, la methode
 		// retourne true, sinon elle retourne false
-		if (solde1avant != solde1après && solde2avant != solde2après)
+		if (solde1avant != solde1apre && solde2avant != solde2apre)
 			return true;
 		else
 			return false;
 	}
 
 	/**
-	 * La méthode virementCompteACompte permet de faire un virement entre deux
-	 * comptes en fonction de la variable somme. La méthode est surchargée pour
-	 * s'adapter au type de compte en paramètre d'entrée.
+	 * La methode virementCompteACompte permet de faire un virement entre deux
+	 * comptes en fonction de la variable somme. La methode est surchargee pour
+	 * s'adapter au type de compte en paramÃ¨tre d'entree.
 	 * 
-	 * @param comptedébiteur
-	 * @param comptecréditeur
+	 * @param comptedebiteur
+	 * @param comptecrediteur
 	 * @param somme
 	 * @return
 	 */
-	public boolean virementCompteACompte(Epargne comptedébiteur, Epargne comptecréditeur, double somme) {
+	public boolean virementCompteACompte(Epargne comptedebiteur, Epargne comptecrediteur, double somme) {
 
-		// On récupère le solde de chaque compte avant le virement pour les tester plus
+		// On recupÃ¨re le solde de chaque compte avant le virement pour les tester plus
 		// tard.
-		double solde1avant = comptedébiteur.getSolde();
-		double solde2avant = comptecréditeur.getSolde();
+		double solde1avant = comptedebiteur.getSolde();
+		double solde2avant = comptecrediteur.getSolde();
 
-		// On effectue le virement en appelant les méthodes débiter() et créditer()
-		// correspondant et on récupère les soldes finaux des comptes
-		double solde1après = this.debiter(comptedébiteur, somme).getSolde();
-		epargneDAO.updateEpargne(comptedébiteur);
-		double solde2après = this.crediter(comptecréditeur, somme).getSolde();
-		epargneDAO.updateEpargne(comptecréditeur);
+		// On effectue le virement en appelant les methodes debiter() et crediter()
+		// correspondant et on recupÃ¨re les soldes finaux des comptes
+		double solde1apre = this.debiter(comptedebiteur, somme).getSolde();
+		epargneDAO.updateEpargne(comptedebiteur);
+		double solde2apre = this.crediter(comptecrediteur, somme).getSolde();
+		epargneDAO.updateEpargne(comptecrediteur);
 
-		// Si les soldes des comptes ont été modifié par le virement, la méthode
+		// Si les soldes des comptes ont ete modifie par le virement, la methode
 		// retourne true, sinon elle retourne false
-		if (solde1avant != solde1après && solde2avant != solde2après)
+		if (solde1avant != solde1apre && solde2avant != solde2apre)
 			return true;
 		else
 			return false;
 	}
-	public boolean virementGestion(Integer idCompteDébiteur, Integer idCompteCréditeur, Integer sommeVirement) {
+
+	/**
+	 * La classe virementGestion permet de récupérer les variables idCompteDebiteur
+	 * et idCompteCrediteur du bean BeanVirement afin de generer les comptes
+	 * associés en testant leur type. Une fois que les comptes sont correctement
+	 * récupérés de la BDD et leur statut de debiteur/crediteur connu, la methode de
+	 * virement correspondante est appelee et prend comme parametre les comptes et
+	 * le montant du virement.
+	 * 
+	 * @param idCompteDebiteur
+	 * @param idCompteCrediteur
+	 * @param sommeVirement
+	 * @return
+	 */
+	public boolean virementGestion(Integer idCompteDebiteur, Integer idCompteCrediteur, Integer sommeVirement) {
 		boolean verification = false;
-		
-		// On récupère de la BDD le compte courant associé à l'id du compte débiteur
-		Courant compteCourantDébiteur = new Courant();
-		compteCourantDébiteur.setIdCompte(idCompteDébiteur);
-		compteCourantDébiteur = courantDAO.getCourant(compteCourantDébiteur);
 
-		// On test si le compte débiteur est courant
-		if (compteCourantDébiteur == null) {
+		// On recupÃ¨re de la BDD le compte courant associe Ã  l'id du compte debiteur
+		Courant compteCourantDebiteur = new Courant();
+		compteCourantDebiteur.setIdCompte(idCompteDebiteur);
+		compteCourantDebiteur = courantDAO.getCourant(compteCourantDebiteur);
 
-			// Si il ne l'est pas alors c'est un compte épargne
-			Epargne compteEpargneDébiteur = new Epargne();
-			compteEpargneDébiteur.setIdCompte(idCompteDébiteur);
-			compteEpargneDébiteur = epargneDAO.getEpargne(compteEpargneDébiteur);
+		// On test si le compte debiteur est courant
+		if (compteCourantDebiteur == null) {
 
-			// On récupère de la BDD le compte courant associé à l'id du compte créditeur
+			// Si il ne l'est pas alors c'est un compte epargne
+			Epargne compteEpargneDebiteur = new Epargne();
+			compteEpargneDebiteur.setIdCompte(idCompteDebiteur);
+			compteEpargneDebiteur = epargneDAO.getEpargne(compteEpargneDebiteur);
 
-			Courant compteCourantCréditeur = new Courant();
-			compteCourantCréditeur.setIdCompte(idCompteCréditeur);
-			compteCourantCréditeur = courantDAO.getCourant(compteCourantCréditeur);
+			// On recupÃ¨re de la BDD le compte courant associe Ã  l'id du compte crediteur
 
-			// On test si le compte créditeur est courant
+			Courant compteCourantCrediteur = new Courant();
+			compteCourantCrediteur.setIdCompte(idCompteCrediteur);
+			compteCourantCrediteur = courantDAO.getCourant(compteCourantCrediteur);
 
-			if (compteCourantCréditeur == null) {
+			// On test si le compte crediteur est courant
 
-				// Si il ne l'est pas alors c'est un compte épargne
-				Epargne compteEpargneCréditeur = new Epargne();
-				compteEpargneCréditeur.setIdCompte(idCompteDébiteur);
-				compteEpargneCréditeur = epargneDAO.getEpargne(compteEpargneCréditeur);
+			if (compteCourantCrediteur == null) {
 
-				verification = this.virementCompteACompte(compteEpargneDébiteur, compteEpargneCréditeur,
-						sommeVirement);
+				// Si il ne l'est pas alors c'est un compte epargne
+				Epargne compteEpargneCrediteur = new Epargne();
+				compteEpargneCrediteur.setIdCompte(idCompteDebiteur);
+				compteEpargneCrediteur = epargneDAO.getEpargne(compteEpargneCrediteur);
+
+				verification = this.virementCompteACompte(compteEpargneDebiteur, compteEpargneCrediteur, sommeVirement);
 
 			} else {
-				verification = this.virementCompteACompte(compteEpargneDébiteur, compteCourantCréditeur,
-						sommeVirement);
+				verification = this.virementCompteACompte(compteEpargneDebiteur, compteCourantCrediteur, sommeVirement);
 
 			}
 		} else {
-			// Le compte débiteur est courant
-			// On test si le compte créditeur est courant
+			// Le compte debiteur est courant
+			// On test si le compte crediteur est courant
 
-			Courant compteCourantCréditeur = new Courant();
-			compteCourantCréditeur.setIdCompte(idCompteCréditeur);
-			compteCourantCréditeur = courantDAO.getCourant(compteCourantCréditeur);
+			Courant compteCourantCrediteur = new Courant();
+			compteCourantCrediteur.setIdCompte(idCompteCrediteur);
+			compteCourantCrediteur = courantDAO.getCourant(compteCourantCrediteur);
 
-			if (compteCourantCréditeur == null) {
+			if (compteCourantCrediteur == null) {
 
-				// Si il ne l'est pas alors c'est un compte épargne
-				Epargne compteEpargneCréditeur = new Epargne();
-				compteEpargneCréditeur.setIdCompte(idCompteDébiteur);
-				compteEpargneCréditeur = epargneDAO.getEpargne(compteEpargneCréditeur);
-				verification = this.virementCompteACompte(compteCourantDébiteur, compteEpargneCréditeur,
-						sommeVirement);
+				// Si il ne l'est pas alors c'est un compte epargne
+				Epargne compteEpargneCrediteur = new Epargne();
+				compteEpargneCrediteur.setIdCompte(idCompteDebiteur);
+				compteEpargneCrediteur = epargneDAO.getEpargne(compteEpargneCrediteur);
+				verification = this.virementCompteACompte(compteCourantDebiteur, compteEpargneCrediteur, sommeVirement);
 
 			} else {
-				verification = this.virementCompteACompte(compteCourantDébiteur, compteCourantCréditeur,
-						sommeVirement);
+				verification = this.virementCompteACompte(compteCourantDebiteur, compteCourantCrediteur, sommeVirement);
 
 			}
 		}
 		return verification;
 
-}
+	}
 }

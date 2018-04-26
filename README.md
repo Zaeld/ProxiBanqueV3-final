@@ -3,7 +3,6 @@ Ce document décrit les démarches à effectuer afin de pouvoir lancer l’appli
 - Auteurs: *Alexandre DEMOLIS*, *Beatriz MORENO*
 - Societé: *Olétri conception informatique*
 
-La technologie WebServices JAX-RS 2 avec Jersey pour le back-office ne fait n'est pas compris dans la release n°1. Nos équipes l'incluront dans la release n°2 qui nécessitera quelques heures supplémentaires avant d'être livrée.
 ## Pré-requis de configuration
 - Installer le **JDK 8** (ou supérieur) sur la machine cible,
 	- Téléchargé depuis: http://www.oracle.com/technetwork/java/javase/downloads/index.html
@@ -100,13 +99,12 @@ La technologie WebServices JAX-RS 2 avec Jersey pour le back-office ne fait n'es
 	- Si le compte beneficiare coincide avec le compte émetteur selectionné, une page d'erreur est affiché avec le message suivant: 	'Attention, vous ne pouvez pas faire de virement d'un compte vers lui même'.
 
 ## Outils et frameworks
-
+### Release 1
 - Front Office: 
 	- Technologie JSF 2 avec framework Mojarra 
 	- Bootstrap 3
 	- Primefaces
 - Back Office :
-	- WebServices JAX-RS 2 avec Jersey *
 	- Log4j (enregistrement des logs dans un fichier)
 	- JDBC (accès aux données)
 	- PreparedStatement 
@@ -116,11 +114,9 @@ La technologie WebServices JAX-RS 2 avec Jersey pour le back-office ne fait n'es
 	- Maven
 - Déploiement
 	- Tomcat (serveur d'application)
-
-(*) En cours de développement
+### Release 2
+- Le service authentification conseiller sera reimplementé avec la technologie **WebServices JAX-RS 2** avec Jersey et livré dans un delais de 3 jours
 
 ## Glosaire
 - SGBDR: *Système de Gestion de Bases de Données Relationnelles*
 
-# release n°2
-- La technologie WebServices JAX-RS 2 avec Jersey pour le back-office sera livrée dans la release n°2 dans un délais 
